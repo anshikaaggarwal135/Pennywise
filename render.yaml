@@ -1,12 +1,15 @@
+
 services:
   - type: web
     name: pennywise-api
     runtime: docker
+    plan: free
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
+    numInstances: 1
     envVars:
       - key: DATABASE_URL
-        sync: false
+        value: sqlite:////tmp/expense_tracker.db
       - key: SECRET_KEY
         generateValue: true
       - key: CORS_ORIGINS
